@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.3",
@@ -18,6 +19,15 @@
     "drizzle-orm": "^0.30.8",
     "framer-motion": "^11.1.7",
     "lucide-react": "^0.372.0",
+=======
+    "@edgestore/react": "^0.1.6",
+    "@edgestore/server": "^0.1.6",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.30.8",
+    "edgestore": "^1.0.3",
+    "generative-ai": "^0.1.4",
+    "google": "^2.1.0",
+>>>>>>> 96ac24dd8f0a7baf8c5ab8c2f8d4186280183dc0
     "next": "14.2.2",
     "postgres": "^3.4.4",
     "react": "^18",
