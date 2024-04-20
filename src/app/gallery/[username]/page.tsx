@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 "use client"
 /*
  * This directive tells Next.js that this component should be treated as a Client Component,
@@ -11,7 +10,6 @@
  * @see https://v0.dev/t/E4M85SAMUdl
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
->>>>>>> e530acde83769a6b9718f7c2a0663b3186c62399
 import ImageComponent from "@/components/gallery/ImageContainer";
 import Link from "next/link";
 import { useState, ChangeEvent } from "react";
