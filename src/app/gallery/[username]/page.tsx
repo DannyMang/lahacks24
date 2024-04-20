@@ -1,4 +1,9 @@
 "use client"
+/**
+ * use client
+ * This directive tells Next.js that this component should be treated as a Client Component,
+ * allowing the use of useState and other React features that rely on the browser.
+ */
 
 /**
  * v0 by Vercel.
@@ -21,6 +26,10 @@ export default function Component() {
       setUploadStatus('Uploading...');
 
       try {
+        const upload = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData,
+        });
         const response = await fetch('/api/analyze', {
           method: 'POST',
           body: formData,
@@ -31,6 +40,8 @@ export default function Component() {
         }
 
         const result = await response.json();
+        console.log(result)
+        console.log(upload)
         setUploadStatus('Upload successful!');
       } catch (error) {
         setUploadStatus(`Error: ${error instanceof Error ? error.message : String(error)}`);
