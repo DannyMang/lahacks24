@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { signIn, provider } from "@/app/lib/firebaseAuth";
 import { Button } from "./button";
