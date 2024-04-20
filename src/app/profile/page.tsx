@@ -3,10 +3,13 @@ import { Input } from "@/components/ui/input"
 import { Switch } from "@/components/ui/switch"
 import { Button } from "@/components/ui/button"
 
+import MainHeader from "@/components/main/mainheader";
+
 export default function Component() {
   return (
     <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+      <MainHeader/>
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-3 mt-10">
         <div className="col-span-1 md:col-span-1">
           <div className="flex flex-col items-center space-y-4">
             <div className="relative">

@@ -1,8 +1,3 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/E4M85SAMUdl
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
 import ImageComponent from "@/components/gallery/ImageContainer";
 import Link from "next/link";
 
