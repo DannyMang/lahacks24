@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import formidable from "formidable";
 
 // Import your image analysis function
-import { analyzeImage } from '../app/services/gemini';
+import { analyzeImage } from '../../app/services/gemini';
 
 export const config = {
   api: {

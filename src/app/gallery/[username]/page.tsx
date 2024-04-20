@@ -1,8 +1,7 @@
 <<<<<<< HEAD
 =======
 "use client"
-/**
- * use client
+/*
  * This directive tells Next.js that this component should be treated as a Client Component,
  * allowing the use of useState and other React features that rely on the browser.
  */

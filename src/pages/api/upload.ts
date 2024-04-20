@@ -1,7 +1,7 @@
 // Import necessary types from Next.js
 import type { NextApiRequest, NextApiResponse } from "next";
 import {IncomingForm} from "formidable";
-import { uploadImage } from "../app/lib/firebaseStorage";
+import { uploadImage } from "../../app/lib/firebaseStorage";
 
 export const config = {
   api: {
