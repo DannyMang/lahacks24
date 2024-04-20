@@ -12,7 +12,7 @@ export default function Component() {
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold text-gray-900 ">Gallery</h1>
         <label
-          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer"
+          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 cursor-pointer"
           htmlFor="upload"
         >
           <UploadIcon className="mr-2 h-5 w-5" />
@@ -22,9 +22,6 @@ export default function Component() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <div className="relative group overflow-hidden rounded-lg">
-          <Link className="absolute inset-0 z-10" href="#">
-            <span className="sr-only">View</span>
-          </Link>
           <ImageComponent
             alt="Image 1"
             className="object-cover w-full h-60 group-hover:opacity-50 transition-opacity"
