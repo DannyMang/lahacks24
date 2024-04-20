@@ -25,6 +25,7 @@
     "express": "^4.19.2",
     "framer-motion": "^11.1.7",
     "generative-ai": "^0.1.4",
+    "globe.gl": "^2.32.3",
     "google": "^2.1.0",
     "lucide-react": "^0.372.0",
     "multer": "^1.4.5-lts.1",
