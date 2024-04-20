@@ -1,5 +1,6 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import LoginButton from "@/components/ui/loginbutton.client";
 
 export default function Component() {
   const GlobeComponent = dynamic(
@@ -20,18 +21,8 @@ export default function Component() {
             </Link>
           </div>
           <div className="flex items-center gap-4">
-            <Link
-              className="inline-flex items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium text-gray-900 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-              href="#"
-            >
-              Login
-            </Link>
-            <Link
-              className="inline-flex items-center justify-center rounded-md bg-gray-800 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-              href="#"
-            >
-              Sign Up
-            </Link>
+            <LoginButton text="Login" />
+            <LoginButton text="Sign up" />
           </div>
         </header>
         <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-4xl text-center mt-24">
