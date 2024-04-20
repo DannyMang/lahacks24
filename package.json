@@ -18,7 +18,7 @@
     "three-globe": "^2.31.0",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.30.8",
-    "postgres": "^3.4.4",
+    "edgestore": "^1.0.3",
     "generative-ai": "^0.1.4",
     "google": "^2.1.0",
     "next": "14.2.2",
