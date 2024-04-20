@@ -1,8 +1,16 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Globe from "globe.gl";
-
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+} from "@/components/ui/dialog";
 function GlobeComponent() {
+  const [dialogContent, setDialogContent] = useState("");
+  const [dialogOpen, setDialogOpen] = useState(false);
+
   interface GlobeData {
     lat: number;
     lng: number;
@@ -13,7 +21,7 @@ function GlobeComponent() {
 
   const plotPoints: GlobeData[] = [
     {
-      lat: 34.0522,
+      lat: 34.161818,
       lng: -118.2437,
       size: 0.5,
       color: "gold",
@@ -36,9 +44,14 @@ function GlobeComponent() {
       .globeImageUrl("//unpkg.com/three-globe/example/img/earth-day.jpg")
       .backgroundColor("rgba(0,0,0,0)") // Set to transparent or to a specific color matching your page
       .pointsData(plotPoints)
-      .pointAltitude("size")
+      .pointAltitude(0.005)
+      .pointRadius(0.75)
       .pointColor("color")
-      .pointLabel("label");
+      .pointLabel("label")
+      .onPointClick((point: any) => {
+        setDialogContent(point.label); // Set dialog content based on the point
+        setDialogOpen(true); // Open the dialog
+      });
 
     const controls = globe.controls();
     controls.enableZoom = false; // Disable zoom
@@ -46,7 +59,20 @@ function GlobeComponent() {
     return () => {};
   }, []);
 
-  return <div ref={globeEl} style={{ width: "100%", height: "500px" }} />;
+  const handleChange = () => {
+    setDialogOpen(false);
+  };
+
+  return (
+    <>
+      <div ref={globeEl} style={{ width: "100%", height: "500px" }} />
+      <Dialog open={dialogOpen} onOpenChange={handleChange}>
+        <DialogContent className="sm:max-w-[425px]">
+          {dialogContent}
+        </DialogContent>
+      </Dialog>
+    </>
+  );
 }
 
 export default GlobeComponent;
