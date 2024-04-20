@@ -10,38 +10,27 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.7.1",
-<<<<<<< Updated upstream
     "@radix-ui/react-dialog": "^1.0.5",
-=======
->>>>>>> Stashed changes
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.3",
     "@react-three/drei": "^9.105.4",
     "@react-three/fiber": "^8.16.2",
-<<<<<<< Updated upstream
     "@types/express": "^4.17.21",
+    "@types/formidable": "^3.4.5",
     "@types/multer": "^1.4.11",
-=======
->>>>>>> Stashed changes
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.30.8",
-<<<<<<< Updated upstream
     "express": "^4.19.2",
-=======
     "firebase": "^10.11.0",
->>>>>>> Stashed changes
     "framer-motion": "^11.1.7",
     "generative-ai": "^0.1.4",
     "globe.gl": "^2.32.3",
     "google": "^2.1.0",
     "lucide-react": "^0.372.0",
-<<<<<<< Updated upstream
     "multer": "^1.4.5-lts.1",
-=======
->>>>>>> Stashed changes
     "next": "14.2.2",
     "postgres": "^3.4.4",
     "react": "^18",
