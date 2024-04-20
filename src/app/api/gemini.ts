@@ -1,9 +1,10 @@
 import { GoogleGenerativeAI, InlineDataPart } from "@google/generative-ai";
 
 // Assuming the API_KEY is defined elsewhere or should be imported if needed
-declare const API_KEY: string;
 
-const genAI = new GoogleGenerativeAI(API_KEY);
+const genAI = new GoogleGenerativeAI(
+  process.env.NEXT_PUBLIC_GOOGLE_API_KEY as string
+);
 
 // Converts a File object to an InlineDataPart object.
 async function fileToGenerativePart(file: File): Promise<InlineDataPart> {
@@ -24,7 +25,7 @@ async function fileToGenerativePart(file: File): Promise<InlineDataPart> {
   } as InlineDataPart; // Cast as InlineDataPart explicitly if needed
 }
 
-async function run(): Promise<void> {
+export async function run(): Promise<string> {
   // For text-and-images input (multimodal), use the gemini-pro-vision model
   const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
 
@@ -35,7 +36,7 @@ async function run(): Promise<void> {
   ) as HTMLInputElement;
   if (!fileInputEl.files) {
     console.error("No files selected.");
-    return;
+    return "";
   }
 
   const imageParts = await Promise.all(
@@ -45,5 +46,5 @@ async function run(): Promise<void> {
   const result = await model.generateContent([prompt, ...imageParts]);
   const response = await result.response;
   const text = await response.text();
-  console.log(text);
+  return text;
 }

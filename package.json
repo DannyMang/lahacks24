@@ -9,19 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@react-three/drei": "^9.105.4",
-    "@react-three/fiber": "^8.16.2",
-    "clsx": "^2.1.0",
-    "framer-motion": "^11.1.7",
-    "tailwind-merge": "^2.3.0",
-    "three": "^0.163.0",
-    "three-globe": "^2.31.0",
+    "@edgestore/react": "^0.1.6",
+    "@edgestore/server": "^0.1.6",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.30.8",
     "edgestore": "^1.0.3",
     "generative-ai": "^0.1.4",
     "google": "^2.1.0",
     "next": "14.2.2",
+    "postgres": "^3.4.4",
     "react": "^18",
     "react-dom": "^18"
   },
