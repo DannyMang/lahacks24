@@ -67,7 +67,7 @@ function GlobeComponent() {
     <>
       <div ref={globeEl} style={{ width: "100%", height: "500px" }} />
       <Dialog open={dialogOpen} onOpenChange={handleChange}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[425px] bg-white rounded-md">
           {dialogContent}
         </DialogContent>
       </Dialog>

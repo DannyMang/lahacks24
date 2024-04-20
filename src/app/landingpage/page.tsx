@@ -50,6 +50,7 @@ export default function Component() {
         </div>
         <GlobeComponent />
       </div>
+
       {/* Subsequent content that follows the main viewport */}
       <div>
         <section

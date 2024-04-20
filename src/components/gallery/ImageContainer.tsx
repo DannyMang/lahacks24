@@ -9,8 +9,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { px } from "framer-motion";
-
 import React from "react";
 
 interface ImageProps {
@@ -53,7 +51,8 @@ const ImageComponent: React.FC<ImageProps> = ({
             </div>
           </div>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+
+        <DialogContent className="sm:max-w-[425px] rounded-lg">
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle> {/* replace with post name */}
             <img alt={alt} height={300} width={425} src={src} className="p-2" />
