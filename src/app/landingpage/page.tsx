@@ -1,7 +1,8 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import LoginButton from "@/components/ui/loginbutton.client";
-
+import { CustomCard } from "@/components/landingpage/CustomCard";
+import { Button } from "@/components/ui/button";
 export default function Component() {
   const GlobeComponent = dynamic(
     () => import("@/components/landingpage/GlobeComponent"),
@@ -28,18 +29,18 @@ export default function Component() {
         <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-4xl text-center mt-24">
           {" "}
           {/* Adjusted margin top to push below the fixed header */}
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Nature Deck</h1>
-          <p className="text-lg md:text-xl mb-8">
+          <h1 className="text-6xl md:text-4xl font-bold mb-4">Nature Deck</h1>
+          <p className="text-2xl md:text-xl mb-4">
             Explore and engage with the natural world around you effortlessly
           </p>
-          <Link
-            className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-sm font-medium text-gray-900 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-            href="#"
-          >
-            Get Started
-          </Link>
         </div>
-        <GlobeComponent />
+        <div className="justify-center flex flex-col text-center m-8">
+          <p className=" text-xs">
+            Drag the globe around to discover Nature Cards from around the
+            world!
+          </p>
+          <GlobeComponent />
+        </div>
       </div>
 
       {/* Subsequent content that follows the main viewport */}
@@ -48,14 +49,19 @@ export default function Component() {
           className="py-20 md:py-32 flex flex-col items-center justify-center min-h-[100vh] bg-gradient-to-r from-green-100 to-green-300"
           id="about"
         >
-          <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-4xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">About Us</h2>
+          <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-4xl text-center font-bold text-3xl">
             <p className="text-lg md:text-xl mb-8">
               Discover and collect Nature Cards for your personal deck!
             </p>
           </div>
+          <CustomCard />
+          <p className="font-bold text-2xl">
+            Upload Your First Nature Card Now!
+          </p>
+          <Button className="mt-6">Get Started</Button>
         </section>
       </div>
+
       <footer className="text-black py-6">
         <div className="container mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between">
           <p className="text-sm">
