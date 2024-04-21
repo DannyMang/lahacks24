@@ -57,7 +57,7 @@ function GlobeComponent() {
     controls.enableZoom = false; // Disable zoom
 
     return () => {};
-  }, []);
+  },[plotPoints]);
 
   const handleChange = () => {
     setDialogOpen(false);

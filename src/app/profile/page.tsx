@@ -2,6 +2,7 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Switch } from "@/components/ui/switch"
 import { Button } from "@/components/ui/button"
+import Image from "next/image";
 
 import MainHeader from "@/components/main/mainheader";
 import { JSX, SVGProps } from "react";
@@ -14,7 +15,7 @@ export default function Component() {
         <div className="col-span-1 md:col-span-1">
           <div className="flex flex-col items-center space-y-4">
             <div className="relative">
-                <img
+                <Image
                 alt="Profile Picture"
                 className="rounded-full"
                 height={128}
