@@ -1,16 +1,49 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import {useState, useEffect } from "react";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import Link from "next/link";
 import FeedPost from "@/components/feed/feedpost";
 import MainHeader from "@/components/main/mainheader";
 import { useSearchParams } from "next/navigation";
+import { fetchAllImages } from "../lib/firebaseFetch";
+
 export default function Component() {
   const searchParams = useSearchParams();
   const userId: string | null = searchParams?.get("userId") ?? null;
+  const [images, setImages] = useState<string[]>([]);
+  const [uploadStatus, setUploadStatus] = useState("");
+  const [open, setOpen] = useState(false);
   console.log(userId);
+
+  useEffect(() => {
+    const loadImages = async () => {
+      try {
+        const imageUrls = await fetchAllImages(); // Fetch images from Firebase
+        setImages(imageUrls); // Store image URLs in state
+      } catch (error) {
+        console.error("Failed to load images:", error);
+        setOpen(true);
+        setUploadStatus("Failed to load images");
+      }
+    };
+
+    loadImages();
+  }, []);
+
   const feedData = [
+    {
+      postId: 0,
+      object: "Turtle",
+      username: "John Doe",
+      profileImageUrl: "https://via.placeholder.com/50",
+      postImage: "https://via.placeholder.com/800",
+      description: "A nerd",
+      health: 100,
+      attack: 50,
+      level: 5,
+      timestamp: new Date().toISOString(),
+    },
     {
       postId: 1,
       object: "DawgCat",
@@ -35,36 +68,24 @@ export default function Component() {
       level: 5,
       timestamp: new Date().toISOString(),
     },
-    {
-      postId: 3,
-      object: "DawgCat",
-      username: "John Doe",
-      profileImageUrl: "https://via.placeholder.com/50",
-      postImage: "https://via.placeholder.com/800",
-      description: "description will be here",
-      health: 100,
-      attack: 50,
-      level: 5,
-      timestamp: new Date().toISOString(),
-    },
   ];
 
   return (
     <div className="bg-gradient-to-r from-green-100 to-green-200">
       <MainHeader userId={userId as string} />
-      {feedData.map((data, index) => (
+      {images.map((src, index) => ( //fix later
         <FeedPost
-          key={data.postId} // Use postId instead of index for a unique key if postId is guaranteed unique
-          postId={data.postId}
-          object={data.object}
-          username={data.username}
-          postImage={data.postImage}
-          profileImageUrl={data.profileImageUrl}
-          description={data.description}
-          health={data.health}
-          attack={data.attack}
-          level={data.level}
-          timestamp={data.timestamp}
+          key={index} // Use postId instead of index for a unique key if postId is guaranteed unique
+          postId={index}
+          object={feedData.find(item => item.postId === index)?.object}
+          username={feedData.find(item => item.postId === index)?.username}
+          postImage={src}
+          profileImageUrl="https://via.placeholder.com/50"
+          description={feedData.find(item => item.postId === index)?.description}
+          health={feedData.find(item => item.postId === index)?.health}
+          attack={feedData.find(item => item.postId === index)?.attack}
+          level={feedData.find(item => item.postId === index)?.level}
+          timestamp= {new Date().toISOString()}
         />
       ))}
       <h1 className="w-full text-center text-xl font-bold mt-20">

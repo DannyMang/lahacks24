@@ -79,7 +79,7 @@ export default function Component() {
   return (
     <div>
       <Header userId={userId as string} />
-      <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <div className="container  mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="flex justify-center items-center mb-8">
           <label
             className="inline-flex items-center p-6 border border-black text-sm 
@@ -98,13 +98,13 @@ export default function Component() {
             onChange={handleFileUpload}
           />
         </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="flex justify-center">
+        <div className="flex gap-20">
           {images.map((url, index) => (
             <ImageComponent
               key={index}
               alt={`Uploaded image ${index}`}
-              className="object-cover w-full h-60 group-hover:opacity-50 transition-opacity"
+              className="object-cover h-96 w-96 group-hover:opacity-50 transition-opacity"
               height={400}
               src={url}
               style={{
@@ -113,7 +113,7 @@ export default function Component() {
               }}
               width={400}
               title={`Image ${index}`}
-              description={`Image uploaded to Firebase Storage`}
+              description={'imagesdescription'}
             />
           ))}
         </div>
