@@ -5,7 +5,8 @@ import Link from "next/link";
 import FeedPost from "@/components/feed/feedpost";
 import MainHeader from "@/components/main/mainheader";
 
-export default function Component() {
+export default function Component({ userId }: { userId: string }) {
+  console.log(userId);
   const feedData = [
     {
       postId: 1,
@@ -42,7 +43,7 @@ export default function Component() {
       attack: 50,
       level: 5,
       timestamp: new Date().toISOString(),
-    }
+    },
   ];
 
   return (
@@ -50,7 +51,7 @@ export default function Component() {
       <MainHeader />
       {feedData.map((data, index) => (
         <FeedPost
-          key={data.postId}  // Use postId instead of index for a unique key if postId is guaranteed unique
+          key={data.postId} // Use postId instead of index for a unique key if postId is guaranteed unique
           postId={data.postId}
           object={data.object}
           username={data.username}
@@ -63,8 +64,10 @@ export default function Component() {
           timestamp={data.timestamp}
         />
       ))}
-      <h1 className="w-full text-center text-xl font-bold mt-20">Go Outside For A Break :)</h1>
+      <h1 className="w-full text-center text-xl font-bold mt-20">
+        Go Outside For A Break :)
+      </h1>
       <div className="h-20 bg-gradient-to-r from-green-100 to-green-200"></div>
     </div>
-  );  
+  );
 }

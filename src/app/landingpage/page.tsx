@@ -1,9 +1,13 @@
 import Link from "next/link";
+import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
 import LoginButton from "@/components/ui/loginbutton";
 import { CustomCard } from "@/components/landingpage/CustomCard";
 import { Button } from "@/components/ui/button";
-export default function Component() {
+import { googleAuth } from "../lib/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+
+const Component: React.FC = () => {
   const GlobeComponent = dynamic(
     () => import("@/components/landingpage/GlobeComponent"),
     {
@@ -11,6 +15,9 @@ export default function Component() {
     }
   );
   const Login = dynamic(() => import("@/components/ui/loginbutton"), {});
+
+  const userId = googleAuth.currentUser?.uid;
+  console.log(userId);
 
   return (
     <div className="flex flex-col">
@@ -85,4 +92,6 @@ export default function Component() {
       </footer>
     </div>
   );
-}
+};
+
+export default Component;
