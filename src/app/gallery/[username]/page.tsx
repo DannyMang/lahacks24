@@ -1,62 +1,51 @@
-<<<<<<< HEAD
-=======
-"use client"
-/**
- * use client
- * This directive tells Next.js that this component should be treated as a Client Component,
- * allowing the use of useState and other React features that rely on the browser.
- */
+"use client";
 
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/E4M85SAMUdl
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
->>>>>>> e530acde83769a6b9718f7c2a0663b3186c62399
 import ImageComponent from "@/components/gallery/ImageContainer";
 import Link from "next/link";
 import { useState, ChangeEvent } from "react";
 
 export default function Component() {
-  const [uploadStatus, setUploadStatus] = useState('');
+  const [uploadStatus, setUploadStatus] = useState("");
 
   const handleFileUpload = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
     if (file) {
       const formData = new FormData();
-      formData.append('image', file);
+      formData.append("image", file);
 
-      setUploadStatus('Uploading...');
+      setUploadStatus("Uploading...");
 
       try {
-        const upload = await fetch('/api/upload', {
-          method: 'POST',
+        const upload = await fetch("/api/upload", {
+          method: "POST",
           body: formData,
         });
-        const response = await fetch('/api/analyze', {
-          method: 'POST',
+        const response = await fetch("/api/analyze", {
+          method: "POST",
           body: formData,
         });
 
         if (!response.ok) {
-          throw new Error('Failed to upload and analyze the image');
+          throw new Error("Failed to upload and analyze the image");
         }
 
         const result = await response.json();
-        console.log(result)
-        console.log(upload)
-        setUploadStatus('Upload successful!');
+        console.log(result);
+        console.log(upload);
+        setUploadStatus("Upload successful!");
       } catch (error) {
-        setUploadStatus(`Error: ${error instanceof Error ? error.message : String(error)}`);
+        setUploadStatus(
+          `Error: ${error instanceof Error ? error.message : String(error)}`
+        );
       }
     } else {
-      setUploadStatus('No file selected');
+      setUploadStatus("No file selected");
     }
   };
   return (
     <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 ">Gallery</h1>
+        <h1 className="text-3xl font-bold text-gray-900 ">Nature Deck</h1>
         <label
           className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 cursor-pointer"
           htmlFor="upload"
@@ -64,7 +53,13 @@ export default function Component() {
           <UploadIcon className="mr-2 h-5 w-5" />
           Upload
         </label>
-        <input accept="image/*" className="sr-only" id="upload" type="file"  onChange={handleFileUpload} />
+        <input
+          accept="image/*"
+          className="sr-only"
+          id="upload"
+          type="file"
+          onChange={handleFileUpload}
+        />
       </div>
       {uploadStatus && <p>{uploadStatus}</p>}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
