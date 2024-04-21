@@ -3,10 +3,18 @@
 import ImageComponent from "@/components/gallery/ImageContainer";
 import Link from "next/link";
 import { useState, ChangeEvent } from "react";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export default function Component() {
   const [uploadStatus, setUploadStatus] = useState("");
-
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(false);
   const handleFileUpload = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
     if (file) {
@@ -34,6 +42,7 @@ export default function Component() {
         console.log(upload);
         setUploadStatus("Upload successful!");
       } catch (error) {
+        setOpen(true);
         setUploadStatus(
           `Error: ${error instanceof Error ? error.message : String(error)}`
         );
@@ -79,6 +88,15 @@ export default function Component() {
           />
         </div>
       </div>
+      <>
+        <Dialog open={open} onOpenChange={handleOpen}>
+          <DialogContent className="sm:max-w-[425px] rounded-lg">
+            <DialogHeader>
+              <p>Error uploading or analyzing image</p>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+      </>
     </div>
   );
 }
