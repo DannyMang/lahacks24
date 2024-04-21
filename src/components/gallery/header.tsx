@@ -16,7 +16,7 @@ const Header = ({ userId }: { userId: string }) => {
           }}
           className="px-4 py-2 text-black hover:text-gray-500"
         >
-          Deck
+          Feed
         </Link>
 
         <Link
