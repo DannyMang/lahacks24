@@ -1,32 +1,37 @@
 import { GoogleGenerativeAI, InlineDataPart } from "@google/generative-ai";
-import fs from 'fs';
-import util from 'util';
-import formidable from 'formidable';
+import fs from "fs";
+import util from "util";
+import formidable from "formidable";
 
 const readFile = util.promisify(fs.readFile);
 
-const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GOOGLE_API_KEY|| '',);
+const genAI = new GoogleGenerativeAI(
+  process.env.NEXT_PUBLIC_GOOGLE_API_KEY || ""
+);
 
 export async function analyzeImage(file: formidable.File): Promise<string> {
   // Convert the file to an InlineDataPart object
-  async function fileToGenerativePart(file: formidable.File): Promise<InlineDataPart> {
+  async function fileToGenerativePart(
+    file: formidable.File
+  ): Promise<InlineDataPart> {
     const fileData = await readFile(file.filepath);
-    const base64EncodedData = fileData.toString('base64');
+    const base64EncodedData = fileData.toString("base64");
 
     return {
       inlineData: {
         data: base64EncodedData,
-        mimeType: file.mimetype || 'application/octet-stream',
+        mimeType: file.mimetype || "application/octet-stream",
       },
     } as InlineDataPart; // Ensuring type compatibility
   }
 
   // Prepare and make the AI model call
   const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
-  const prompt = "Analyze this plant or animal and make up a pokemon name and made-up description of it in 1-2 sentences. Please provide your answer in a json like {species:...,description:...}  ";
-  
+  const prompt =
+    "Analyze this plant or animal and make up a pokemon name and made-up description of it in 1-2 sentences. Please provide your answer in a json like {species:...,description:...}  ";
+
   const imagePart = await fileToGenerativePart(file);
   const result = await model.generateContent([prompt, imagePart]);
-  const response = await result.response.text(); 
+  const response = await result.response.text();
   return response;
 }
