@@ -4,11 +4,12 @@ import { Switch } from "@/components/ui/switch"
 import { Button } from "@/components/ui/button"
 
 import MainHeader from "@/components/main/mainheader";
+import { JSX, SVGProps } from "react";
 
 export default function Component() {
   return (
     <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
-      <MainHeader/>
+      <MainHeader userId={""}/>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3 mt-10">
         <div className="col-span-1 md:col-span-1">
           <div className="flex flex-col items-center space-y-4">
@@ -98,7 +99,7 @@ export default function Component() {
   )
 }
 
-function BellIcon(props) {
+function BellIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -119,7 +120,7 @@ function BellIcon(props) {
 }
 
 
-function CameraIcon(props) {
+function CameraIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -140,7 +141,7 @@ function CameraIcon(props) {
 }
 
 
-function SmartphoneIcon(props) {
+function SmartphoneIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
