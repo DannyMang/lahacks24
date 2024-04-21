@@ -1,9 +1,8 @@
-import { app, firebaseConfig } from "./firebase";
 import { db } from "./db";
-import { UserCredential } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { fromTheme } from "tailwind-merge";
+import { UserCredential, signOut } from "firebase/auth";
+import { doc, getDocs, setDoc, collection, getDoc } from "firebase/firestore";
 
+// creates a user profile in the database
 export async function createUser(result: UserCredential) {
   if (await checkUserExists(result.user.uid)) {
     const userProfileRef = doc(db, "users", result.user.uid);
@@ -17,7 +16,7 @@ export async function createUser(result: UserCredential) {
   } else {
   }
 }
-
+// just checks to see if a user already exists
 const checkUserExists = async (userId: string) => {
   const userRef = doc(db, "users", userId);
   const userDoc = await getDoc(userRef);
