@@ -34,13 +34,13 @@ export default function Component() {
   const feedData = [
     {
       postId: 0,
-      object: "Turtle",
-      username: "John Doe",
+      object: "Nerd",
+      username: "Ryan Nguyen",
       profileImageUrl: "https://via.placeholder.com/50",
       postImage: "https://via.placeholder.com/800",
-      description: "A nerd",
-      health: 100,
-      attack: 50,
+      description: "This is a very rare Pokemon called a \"Nerdling\". It is a very intelligent Pokemon that is said to be able to learn any move. It is also said to be very shy and only comes out of its hiding spot when it feels safe.",
+      health: 30,
+      attack: 60,
       level: 5,
       timestamp: new Date().toISOString(),
     },

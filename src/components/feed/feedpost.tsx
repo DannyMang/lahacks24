@@ -5,12 +5,14 @@ import { Description } from "@radix-ui/react-dialog";
 
 function PostDetails({ title, description, timestamp, health, attack, level }) {
     return (
-      <>
-        <p className="text-black mt-5 mb-5">{description}</p>
-        <p className="text-black">Health: {health}</p>
-        <p className="text-black">Attack: {attack}</p>
-        <p className="text-black">Level: {level}</p>
-      </>
+      <div>
+          <p className="text-black text-xl mt-5 mb-5">{description}</p>
+          <div className="flex flex-row justify-between stats-container text-xl mt-10">
+              <p className="text-black stat">Health: {health}</p>
+              <p className="text-black stat">Attack: {attack}</p>
+              <p className="text-black stat">Level: {level}</p>
+          </div>
+      </div>
     );
   }
   
@@ -37,7 +39,7 @@ function PostDetails({ title, description, timestamp, health, attack, level }) {
             <div className="absolute bottom-0 left-0 right-0 flex items-center justify-start p-2 bg-gray-200 text-gray-800 text-sm rounded-b-xl">
               <div className="flex items-center">
                 <img src={profileImageUrl} alt="Profile Image" className="w-10 h-10 rounded-full mr-2" />
-                <span><strong>{username}</strong> found blank</span>
+                <span><strong>{username}</strong> found {object}</span>
               </div>
             </div>
           </CardItem>
