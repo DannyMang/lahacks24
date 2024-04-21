@@ -58,7 +58,9 @@ export default function Component() {
           <p className="font-bold text-2xl">
             Upload Your First Nature Card Now!
           </p>
-          <Button className="mt-6">Get Started</Button>
+          <Button className="mt-6" size="lg">
+            Get Started
+          </Button>
         </section>
       </div>
 
