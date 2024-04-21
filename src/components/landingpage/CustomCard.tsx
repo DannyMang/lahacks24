@@ -9,20 +9,20 @@ export function CustomCard() {
     <CardContainer className="inter-var">
       <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
         <CardItem
-          translateZ="50"
+          translateZ="20"
           className="text-xl font-bold text-neutral-600 dark:text-white"
         >
           Capture and Collect Nature Cards
         </CardItem>
         <CardItem
           as="p"
-          translateZ="60"
+          translateZ="30"
           className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
         >
           Upload and share your nature photography with your friends! Utilize AI
           Image Recognition to identify the flora and fauna in your photos.
         </CardItem>
-        <CardItem translateZ="100" className="w-full mt-4">
+        <CardItem translateZ="50" className="w-full mt-4">
           <Image
             src="/placeholder.svg"
             height="1000"

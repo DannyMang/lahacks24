@@ -16,7 +16,7 @@ function GlobeComponent() {
     lat: number;
     lng: number;
     size: number;
-    color: string;
+
     label: string;
   }
 
@@ -25,11 +25,14 @@ function GlobeComponent() {
       lat: 34.161818,
       lng: -118.2437,
       size: 0.5,
-      color: "gold",
       label: "Los Angeles",
     },
-    { lat: 40.7128, lng: -74.006, size: 0.5, color: "red", label: "New York" },
-    { lat: 48.8566, lng: 2.3522, size: 0.5, color: "blue", label: "Paris" },
+    { lat: 40.7128, lng: -74.006, size: 0.5, label: "New York" },
+    { lat: 48.8566, lng: 2.3522, size: 0.5, label: "Paris" },
+    { lat: 35.689487, lng: 139.691711, size: 0.5, label: "Tokyo" },
+    { lat: -19.015438, lng: 29.154857, size: 0.5, label: "Zimbabwe" },
+    { lat: 55.378051, lng: -3.435973, size: 0.5, label: "Scotland" },
+    { lat: 61.52401, lng: 105.318756, size: 0.5, label: "Russia" },
   ];
 
   const globeEl = useRef<HTMLDivElement | null>(null);
@@ -43,8 +46,8 @@ function GlobeComponent() {
       .pointsData(plotPoints)
       .pointAltitude(0.015)
       .pointRadius(0.75)
-      .pointColor("color")
       .pointLabel("label")
+      .pointColor(() => "#F53933")
       .onPointClick((point: any) => {
         setDialogContent(point.label); // Set dialog content based on the point
         setDialogOpen(true); // Open the dialog
