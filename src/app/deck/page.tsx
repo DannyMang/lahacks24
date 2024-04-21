@@ -1,7 +1,6 @@
 "use client";
 
 import ImageComponent from "@/components/gallery/ImageContainer";
-import Link from "next/link";
 import { useState, ChangeEvent } from "react";
 import {
   Dialog,
@@ -10,8 +9,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { useSearchParams } from "next/navigation";
 
 export default function Component() {
+  const searchParams = useSearchParams();
+  const userId: string | null = searchParams.get("userId");
   const [uploadStatus, setUploadStatus] = useState("");
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(false);

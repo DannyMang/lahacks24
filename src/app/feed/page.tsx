@@ -8,7 +8,7 @@ import MainHeader from "@/components/main/mainheader";
 import { useSearchParams } from "next/navigation";
 export default function Component() {
   const searchParams = useSearchParams();
-  const userId = searchParams.get("userId");
+  const userId: string | null = searchParams.get("userId");
   console.log(userId);
   const feedData = [
     {
@@ -51,7 +51,7 @@ export default function Component() {
 
   return (
     <div className="bg-gradient-to-r from-green-100 to-green-200">
-      <MainHeader userId={userId} />
+      <MainHeader userId={userId as string} />
       {feedData.map((data, index) => (
         <FeedPost
           key={data.postId} // Use postId instead of index for a unique key if postId is guaranteed unique

@@ -13,10 +13,13 @@ const MainHeader = ({ userId }: { userId: string }) => {
           Home
         </Link>
         <Link
-          href={`/gallery${userId}`}
+          href={{
+            pathname: "/deck",
+            query: { userId: userId },
+          }}
           className="px-4 py-2 text-black hover:text-gray-500"
         >
-          Gallery
+          Deck
         </Link>
 
         <Link
