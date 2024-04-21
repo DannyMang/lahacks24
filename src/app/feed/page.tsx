@@ -8,51 +8,60 @@ import MainHeader from "@/components/main/mainheader";
 export default function Component() {
   const feedData = [
     {
-      mainTitle: "DawgCat",
+      postId: 1,
+      object: "DawgCat",
       username: "John Doe",
       profileImageUrl: "https://via.placeholder.com/50",
-      posts: [
-        { title: "First Detail", description: "Detail one description" },
-        { title: "Second Detail", description: "Detail two description" },
-        { title: "Third Detail", description: "Detail three description" }
-      ]
+      postImage: "https://via.placeholder.com/800",
+      health: 100,
+      attack: 50,
+      level: 5,
+      timestamp: new Date().toISOString(),
     },
     {
-      mainTitle: "DawgCat",
+      postId: 2,
+      object: "DawgCat",
       username: "John Doe",
       profileImageUrl: "https://via.placeholder.com/50",
-      posts: [
-        { title: "First Detail", description: "Detail one description" },
-        { title: "Second Detail", description: "Detail two description" },
-        { title: "Third Detail", description: "Detail three description" }
-      ]
+      postImage: "https://via.placeholder.com/800",
+      health: 100,
+      attack: 50,
+      level: 5,
+      timestamp: new Date().toISOString(),
     },
     {
-      mainTitle: "DawgCat",
+      postId: 3,
+      object: "DawgCat",
       username: "John Doe",
       profileImageUrl: "https://via.placeholder.com/50",
-      posts: [
-        { title: "First Detail", description: "Detail one description" },
-        { title: "Second Detail", description: "Detail two description" },
-        { title: "Third Detail", description: "Detail three description" }
-      ]
-    },
+      postImage: "https://via.placeholder.com/800",
+      health: 100,
+      attack: 50,
+      level: 5,
+      timestamp: new Date().toISOString(),
+    }
   ];
+  
 
   return (
-    <div className="bg-gradient-to-r from-green-100 to-green-100">
-      <MainHeader/>
+    <div className="bg-gradient-to-r from-green-100 to-green-200">
+      <MainHeader />
       {feedData.map((data, index) => (
         <FeedPost
-          key={index}
-          mainTitle={data.mainTitle}
+          key={data.postId}  // Use postId instead of index for a unique key if postId is guaranteed unique
+          postId={data.postId}
+          object={data.object}
           username={data.username}
+          postImage={data.postImage}
           profileImageUrl={data.profileImageUrl}
-          posts={data.posts}
+          health={data.health}
+          attack={data.attack}
+          level={data.level}
+          timestamp={data.timestamp}
         />
       ))}
-      <h1 className="w-full text-center mt-20">Go Outside For A Break :) </h1>
-      <div className="h-20 bg-gradient-to-r from-green-100 to-green-100"></div>
+      <h1 className="w-full text-center text-xl font-bold mt-20">Go Outside For A Break :)</h1>
+      <div className="h-20 bg-gradient-to-r from-green-100 to-green-200"></div>
     </div>
-  );
+  );  
 }
