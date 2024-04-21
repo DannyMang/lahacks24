@@ -19,7 +19,10 @@ export default function Component() {
   const [images, setImages] = useState<string[]>([]);
   const [uploadStatus, setUploadStatus] = useState("");
   const [open, setOpen] = useState(false);
+  const [descriptions, setDescriptions] = useState<string[]>([]);
   const handleOpen = () => setOpen(false);
+ 
+
 
   useEffect(() => {
     const loadImages = async () => {
@@ -51,7 +54,6 @@ export default function Component() {
           method: "POST",
           body: formData,
         });
-        /*
         const response = await fetch("/api/analyze", {
           method: "POST",
           body: formData,
@@ -62,8 +64,10 @@ export default function Component() {
           throw new Error("Failed to upload and analyze the image");
         }
         const result = await response.json();
+        
+        setDescriptions(oldDescriptions => [...oldDescriptions, result.data]);
+        console.log('Description added:', result.data);
         console.log(result);
-        */
         console.log(upload);
         setUploadStatus("Upload successful!");
       } catch (error) {
@@ -101,20 +105,21 @@ export default function Component() {
       <div className="flex justify-center">
         <div className="flex gap-20">
           {images.map((url, index) => (
-            <ImageComponent
-              key={index}
-              alt={`Uploaded image ${index}`}
-              className="object-cover h-96 w-96 group-hover:opacity-50 transition-opacity"
-              height={400}
-              src={url}
-              style={{
-                aspectRatio: "400/400",
-                objectFit: "cover",
-              }}
-              width={400}
-              title={`Image ${index}`}
-              description={'imagesdescription'}
-            />
+
+              <ImageComponent
+                  key={index}
+                  alt={`Uploaded image ${index}`}
+                  className="object-cover w-full h-60 group-hover:opacity-50 transition-opacity"
+                  height={400}
+                  src={url}
+                  style={{
+                      aspectRatio: "400/400",
+                      objectFit: "cover",
+                  }}
+                  width={400}
+                  title={`Image ${index}`}
+                  description={descriptions[index] || "Loading description..."}
+              />
           ))}
         </div>
         <>
@@ -128,13 +133,6 @@ export default function Component() {
         </>
       </div>
       <>
-        <Dialog open={open} onOpenChange={handleOpen}>
-          <DialogContent className="sm:max-w-[425px] rounded-lg">
-            <DialogHeader>
-              <p>Error uploading or analyzing image</p>
-            </DialogHeader>
-          </DialogContent>
-        </Dialog>
       </> 
     </div>
   </div>

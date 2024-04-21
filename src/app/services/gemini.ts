@@ -23,7 +23,7 @@ export async function analyzeImage(file: formidable.File): Promise<string> {
 
   // Prepare and make the AI model call
   const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
-  const prompt = "Analyze this plant or animal and make up a pokemon name and made-up description of it in 1-2 sentences. Please provide your answer in a json like {species:...,description:...}  ";
+  const prompt = "Analyze this plant or animal and make up a pokemon name and made-up description of it in 1-2 sentences. ";
   
   const imagePart = await fileToGenerativePart(file);
   const result = await model.generateContent([prompt, imagePart]);
