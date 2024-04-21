@@ -70,7 +70,6 @@ export default function Component() {
           onChange={handleFileUpload}
         />
       </div>
-      {uploadStatus && <p>{uploadStatus}</p>}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <div className="relative group overflow-hidden rounded-lg">
           <ImageComponent
