@@ -5,7 +5,7 @@ import { File } from 'formidable';
 
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: "naturedex-420909.firebaseapp.com",
   projectId: "naturedex-420909",
   storageBucket: "naturedex-420909.appspot.com",
