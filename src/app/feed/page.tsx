@@ -8,7 +8,7 @@ import MainHeader from "@/components/main/mainheader";
 import { useSearchParams } from "next/navigation";
 export default function Component() {
   const searchParams = useSearchParams();
-  const userId: string | null = searchParams.get("userId");
+  const userId: string | null = searchParams?.get("userId") ?? null;
   console.log(userId);
   const feedData = [
     {

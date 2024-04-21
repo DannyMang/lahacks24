@@ -1,7 +1,7 @@
 "use client";
 
 import ImageComponent from "@/components/gallery/ImageContainer";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect} from "react";
 import {
   Dialog,
   DialogTrigger,
@@ -10,14 +10,34 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useSearchParams } from "next/navigation";
-import Header from "@/components/gallery/header";
+import Header from "@/components/gallery/header"
+import { fetchAllImages } from "../lib/firebaseFetch";
 
 export default function Component() {
   const searchParams = useSearchParams();
   const userId: string = searchParams!.get("userId")!;
+  const [images, setImages] = useState<string[]>([]);
   const [uploadStatus, setUploadStatus] = useState("");
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(false);
+
+  useEffect(() => {
+    const loadImages = async () => {
+      try {
+        const imageUrls = await fetchAllImages(); // Fetch images from Firebase
+        setImages(imageUrls); // Store image URLs in state
+      } catch (error) {
+        console.error("Failed to load images:", error);
+        setOpen(true);
+        setUploadStatus("Failed to load images");
+      }
+    };
+
+    loadImages();
+  }, []);
+
+
+
   const handleFileUpload = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
     if (file) {
@@ -31,17 +51,19 @@ export default function Component() {
           method: "POST",
           body: formData,
         });
+        /*
         const response = await fetch("/api/analyze", {
           method: "POST",
           body: formData,
         });
+        
 
         if (!response.ok) {
           throw new Error("Failed to upload and analyze the image");
         }
-
         const result = await response.json();
         console.log(result);
+        */
         console.log(upload);
         setUploadStatus("Upload successful!");
       } catch (error) {
@@ -76,22 +98,24 @@ export default function Component() {
             onChange={handleFileUpload}
           />
         </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          <div className="relative group overflow-hidden rounded-lg">
+          {images.map((url, index) => (
             <ImageComponent
-              alt="Image 1"
+              key={index}
+              alt={`Uploaded image ${index}`}
               className="object-cover w-full h-60 group-hover:opacity-50 transition-opacity"
               height={400}
-              src="/placeholder.svg"
+              src={url}
               style={{
                 aspectRatio: "400/400",
                 objectFit: "cover",
               }}
               width={400}
-              title="Image 1"
-              description="Description of Image 1"
+              title={`Image ${index}`}
+              description={`Image uploaded to Firebase Storage`}
             />
-          </div>
+          ))}
         </div>
         <>
           <Dialog open={open} onOpenChange={handleOpen}>
@@ -103,7 +127,17 @@ export default function Component() {
           </Dialog>
         </>
       </div>
+      <>
+        <Dialog open={open} onOpenChange={handleOpen}>
+          <DialogContent className="sm:max-w-[425px] rounded-lg">
+            <DialogHeader>
+              <p>Error uploading or analyzing image</p>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+      </> 
     </div>
+  </div>
   );
 }
 
