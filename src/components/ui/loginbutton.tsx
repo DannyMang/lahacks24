@@ -19,7 +19,8 @@ const LoginButton = (props: loginButtonProps) => {
         createUser(result);
         let token: string = result.user.uid;
         console.log(token);
-        router.push(`/feed/${token}`);
+        const queryParams = new URLSearchParams({ userId: token }).toString();
+        router.push(`/feed/?${queryParams}`);
       })
       .catch((error) => {
         // Handle Errors here.

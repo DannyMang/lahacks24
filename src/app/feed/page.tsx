@@ -1,11 +1,14 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import Link from "next/link";
 import FeedPost from "@/components/feed/feedpost";
 import MainHeader from "@/components/main/mainheader";
-
-export default function Component({ userId }: { userId: string }) {
+import { useSearchParams } from "next/navigation";
+export default function Component() {
+  const searchParams = useSearchParams();
+  const userId = searchParams.get("userId");
   console.log(userId);
   const feedData = [
     {
@@ -48,7 +51,7 @@ export default function Component({ userId }: { userId: string }) {
 
   return (
     <div className="bg-gradient-to-r from-green-100 to-green-200">
-      <MainHeader />
+      <MainHeader userId={userId} />
       {feedData.map((data, index) => (
         <FeedPost
           key={data.postId} // Use postId instead of index for a unique key if postId is guaranteed unique
