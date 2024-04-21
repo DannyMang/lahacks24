@@ -28,12 +28,22 @@ export const CardContainer = ({
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
-    const { left, top, width, height } =
-      containerRef.current.getBoundingClientRect();
+
+    const { bottom, left, width, height } = containerRef.current.getBoundingClientRect();
+    const mouseY = e.clientY - bottom + height;  // Calculate mouseY relative to the bottom of the card
+
+    if (mouseY > 0.90 * height) {
+        containerRef.current.style.transform = 'rotateY(0deg) rotateX(0deg)';
+        setIsMouseEntered(false);  // Consider mouse not entered for interaction in the bottom 5%
+        return;  // Skip applying any rotation or effects
+    }
+
+    // Continue as normal if not within the bottom 5%
+    setIsMouseEntered(true);
     const x = (e.clientX - left - width / 2) / 25;
-    const y = (e.clientY - top - height / 2) / 25;
+    const y = (mouseY - height / 2) / 25;
     containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
-  };
+};
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     setIsMouseEntered(true);
