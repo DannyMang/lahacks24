@@ -6,6 +6,7 @@ import {
   DialogTrigger,
   DialogContent,
   DialogHeader,
+  DialogTitle,
 } from "@/components/ui/dialog";
 function GlobeComponent() {
   const [dialogContent, setDialogContent] = useState("");
@@ -28,7 +29,7 @@ function GlobeComponent() {
       label: "Los Angeles",
     },
     { lat: 40.7128, lng: -74.006, size: 0.5, color: "red", label: "New York" },
-    { lat: 48.8566, lng: 2.3522, size: 0.5, color: "green", label: "Paris" },
+    { lat: 48.8566, lng: 2.3522, size: 0.5, color: "blue", label: "Paris" },
   ];
 
   const globeEl = useRef<HTMLDivElement | null>(null);
@@ -40,7 +41,7 @@ function GlobeComponent() {
       .globeImageUrl("//unpkg.com/three-globe/example/img/earth-day.jpg")
       .backgroundColor("rgba(0,0,0,0)") // Set to transparent or to a specific color matching your page
       .pointsData(plotPoints)
-      .pointAltitude(0.005)
+      .pointAltitude(0.015)
       .pointRadius(0.75)
       .pointColor("color")
       .pointLabel("label")
@@ -67,8 +68,18 @@ function GlobeComponent() {
         className="mt-[-100px]"
       />
       <Dialog open={dialogOpen} onOpenChange={handleChange}>
-        <DialogContent className="sm:max-w-[425px] bg-white rounded-md">
-          {dialogContent}
+        <DialogContent className="sm:max-w-[425px] rounded-lg">
+          <DialogHeader>
+            <DialogTitle>Title Placeholder</DialogTitle>{" "}
+            {/* replace with post name */}
+            <img
+              height={300}
+              width={425}
+              src="./placeholder.svg"
+              className="p-2"
+            />
+            <p>Placeholder</p>
+          </DialogHeader>
         </DialogContent>
       </Dialog>
     </>
