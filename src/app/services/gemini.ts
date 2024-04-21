@@ -5,9 +5,7 @@ import formidable from 'formidable';
 
 const readFile = util.promisify(fs.readFile);
 
-const genAI = new GoogleGenerativeAI(
-  process.env.NEXT_PUBLIC_GOOGLE_API_KEY as string
-);
+const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GOOGLE_API_KEY|| '',);
 
 export async function analyzeImage(file: formidable.File): Promise<string> {
   // Convert the file to an InlineDataPart object
@@ -25,7 +23,7 @@ export async function analyzeImage(file: formidable.File): Promise<string> {
 
   // Prepare and make the AI model call
   const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
-  const prompt = "Please analyze this image and provide details.";
+  const prompt = "Analyze this plant or animal and make up a pokemon name and made-up description of it in 1-2 sentences. Please provide your answer in a json like {species:...,description:...}  ";
   
   const imagePart = await fileToGenerativePart(file);
   const result = await model.generateContent([prompt, imagePart]);

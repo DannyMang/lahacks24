@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import formidable from "formidable";
+import formidable, {IncomingForm} from "formidable";
 
 // Import your image analysis function
 import { analyzeImage } from '../../app/services/gemini';
@@ -12,7 +12,7 @@ export const config = {
 
 function parseForm(req: NextApiRequest): Promise<{ fields: formidable.Fields; files: formidable.Files }> {
   return new Promise((resolve, reject) => {
-    const form = new formidable.IncomingForm();
+    const form = new IncomingForm();
     form.parse(req, (err, fields, files) => {
       if (err) reject(err);
       else resolve({ fields, files });
