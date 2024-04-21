@@ -1,6 +1,6 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import LoginButton from "@/components/ui/loginbutton.client";
+import LoginButton from "@/components/ui/loginbutton";
 import { CustomCard } from "@/components/landingpage/CustomCard";
 import { Button } from "@/components/ui/button";
 export default function Component() {
@@ -10,6 +10,7 @@ export default function Component() {
       ssr: false,
     }
   );
+  const Login = dynamic(() => import("@/components/ui/loginbutton"), {});
 
   return (
     <div className="flex flex-col">
