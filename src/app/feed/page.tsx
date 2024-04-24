@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import {useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import Link from "next/link";
 import FeedPost from "@/components/feed/feedpost";
@@ -38,7 +38,8 @@ export default function Component() {
       username: "Ryan Nguyen",
       profileImageUrl: "https://via.placeholder.com/50",
       postImage: "https://via.placeholder.com/800",
-      description: "This is a very rare Pokemon called a \"Nerdling\". It is a very intelligent Pokemon that is said to be able to learn any move. It is also said to be very shy and only comes out of its hiding spot when it feels safe.",
+      description:
+        'This is a very rare Pokemon called a "Nerdling". It is a very intelligent Pokemon that is said to be able to learn any move. It is also said to be very shy and only comes out of its hiding spot when it feels safe.',
       health: 30,
       attack: 60,
       level: 5,
@@ -73,21 +74,32 @@ export default function Component() {
   return (
     <div className="bg-gradient-to-r from-green-100 to-green-200">
       <MainHeader userId={userId as string} />
-      {images.map((src, index) => ( //fix later
-        <FeedPost
-          key={index} // Use postId instead of index for a unique key if postId is guaranteed unique
-          postId={index}
-          object={feedData.find(item => item.postId === index)?.object}
-          username={feedData.find(item => item.postId === index)?.username}
-          postImage={src}
-          profileImageUrl="https://via.placeholder.com/50"
-          description={feedData.find(item => item.postId === index)?.description}
-          health={feedData.find(item => item.postId === index)?.health}
-          attack={feedData.find(item => item.postId === index)?.attack}
-          level={feedData.find(item => item.postId === index)?.level}
-          timestamp= {new Date().toISOString()}
-        />
-      ))}
+      <div>
+        {images.map(
+          (
+            src,
+            index //fix later
+          ) => (
+            <FeedPost
+              key={index} // Use postId instead of index for a unique key if postId is guaranteed unique
+              postId={index}
+              object={feedData.find((item) => item.postId === index)?.object}
+              username={
+                feedData.find((item) => item.postId === index)?.username
+              }
+              postImage={src}
+              profileImageUrl="/placeholder.svg"
+              description={
+                feedData.find((item) => item.postId === index)?.description
+              }
+              health={feedData.find((item) => item.postId === index)?.health}
+              attack={feedData.find((item) => item.postId === index)?.attack}
+              level={feedData.find((item) => item.postId === index)?.level}
+              timestamp={new Date().toISOString()}
+            />
+          )
+        )}
+      </div>
       <h1 className="w-full text-center text-xl font-bold mt-20">
         Go Outside For A Break :)
       </h1>
